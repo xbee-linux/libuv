@@ -1,0 +1,33 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  The libuv package is a multi-platform support library with a focus on asynchronous I/O.
+  Installed Programs: None
+  Installed Library: libuv.so
+  Installed Directory: /usr/include/uv
+
+in:
+  version: "1.43.0"
+
+dependencies:
+  - automake
+  - autoconf
+  - libtool
+  - m4
+
+
+provision:
+  - url: 
+      from: https://dist.libuv.org/dist/v1.43.0/libuv-v{% version %}.tar.gz
+      todir: "{% xbeeSrc %}"
+
+build:
+   - shell:
+      cmds:
+        - ./autogen.sh
+        - ./configure --prefix=/usr --disable-static
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/libuv-v{% version %}"
