@@ -8,10 +8,10 @@ description: |
   Installed Library: libuv.so
   Installed Directory: /usr/include/uv
 
-in:
+var:
   version: "1.43.0"
 
-dependencies:
+builders:
   - automake
   - autoconf
   - libtool
@@ -19,9 +19,7 @@ dependencies:
 
 
 provision:
-  - url: 
-      from: https://dist.libuv.org/dist/v1.43.0/libuv-v{% version %}.tar.gz
-      todir: "{% xbeeSrc %}"
+  - url: https://dist.libuv.org/dist/v1.43.0/libuv-v{{ .version }}.tar.gz
 
 build:
    - shell:
@@ -29,5 +27,5 @@ build:
         - ./autogen.sh
         - ./configure --prefix=/usr --disable-static
         - make
-        - make install DESTDIR={% xbeeOut %}
-      directory: "{% xbeeSrc %}/libuv-v{% version %}"
+        - make install DESTDIR={{ .xbee.out }}
+      directory: "{{ .xbee.src }}/libuv-v{{ .version }}"
