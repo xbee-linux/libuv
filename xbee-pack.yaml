@@ -9,7 +9,8 @@ description: |
   Installed Directory: /usr/include/uv
 
 var:
-  version: "1.43.0"
+  xbee:
+    version: "1.43.0"
 
 builders:
   - automake
@@ -19,7 +20,7 @@ builders:
 
 
 provision:
-  - url: https://dist.libuv.org/dist/v1.43.0/libuv-v{{ .version }}.tar.gz
+  - url: https://dist.libuv.org/dist/v1.43.0/libuv-v{{ .xbee.version }}.tar.gz
 
 build:
    - shell:
@@ -28,4 +29,4 @@ build:
         - ./configure --prefix=/usr --disable-static
         - make
         - make install DESTDIR={{ .xbee.out }}
-      directory: "{{ .xbee.src }}/libuv-v{{ .version }}"
+      directory: "{{ .xbee.src }}/libuv-v{{ .xbee.version }}"
