@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 description: |
   The libuv package is a multi-platform support library with a focus on asynchronous I/O.
   Installed Programs: None
@@ -12,7 +10,7 @@ var:
   xbee:
     version: "1.43.0"
 
-builders:
+builder:
   - automake
   - autoconf
   - libtool
